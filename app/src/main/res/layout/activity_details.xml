@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/homebackground"
+    tools:context=".details">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/filmtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Movie Title"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageViewbg"
+            android:layout_width="match_parent"
+            android:layout_height="285dp"
+            android:layout_gravity="center_horizontal"
+            android:alpha="0.4"
+            android:background="@drawable/blur_overlay"
+            app:srcCompat="@drawable/bg" />
+
+        <TextView
+            android:id="@+id/displayprice"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right|end"
+            android:text="$50"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textcasts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Casts"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/displaycasts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Casts"
+                    android:paddingStart="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/textdescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Movie Description"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/displaydescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:paddingStart="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/textgenre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Movie Genre"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/displaygenre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Genre"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:paddingStart="15dp" />
+
+                <TextView
+                    android:id="@+id/textdirector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Movie Production"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/displaydirector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:paddingStart="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/textlanguage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Movie Language"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/displaylanguage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Language"
+                    android:paddingStart="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/texttime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Movie Showing Time"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/displaytime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Time Start and End"
+                    android:paddingStart="15dp"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"/>
+
+                <Button
+                    android:id="@+id/setupmoviebtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/button"
+                    android:layout_gravity="center"
+                    android:text="Book Movie Reservation"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageViewTop"
+        android:layout_width="180dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="120dp"/>
+
+</FrameLayout>

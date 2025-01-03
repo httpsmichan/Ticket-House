@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/homebackground"
+    tools:context=".ticket">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/tickettext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="My Ticket"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- Ticket Image (Base Layer) -->
+    <ImageView
+        android:id="@+id/ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/appticket" />
+
+    <!-- Overlay: TextView for Title -->
+
+
+    <!-- Overlay: TextView for Subtitle -->
+    <TextView
+        android:id="@+id/tickettitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginBottom="50dp"
+        android:text="Movie Title"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ticketgenre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginBottom="50dp"
+        android:text="Genre"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/posterViewTop"
+        android:layout_width="90dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="50dp" />
+
+    <ImageView
+        android:id="@+id/ticketdate"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="50dp"
+        app:srcCompat="@drawable/baseline_calendar_month_24" />
+
+    <TextView
+        android:id="@+id/ticketdatetext"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginBottom="50dp"
+        android:text="List of Genre"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/ticketseat"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="252dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginBottom="50dp"
+        app:srcCompat="@drawable/baseline_event_seat_24" />
+
+    <TextView
+        android:id="@+id/ticketseattext"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="245dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginBottom="50dp"
+        android:text="List of Seat/s"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/ticketdivide"
+        android:layout_width="359dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginBottom="50dp"
+        android:text="------------------------------------------"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/ticketprice"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="50dp"
+        app:srcCompat="@drawable/baseline_price_check_24" />
+
+    <TextView
+        android:id="@+id/ticketpricetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="355dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="50dp"
+        android:text="Price"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/ticketloc"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="390dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="50dp"
+        app:srcCompat="@drawable/baseline_location_pin_24" />
+
+    <TextView
+        android:id="@+id/ticketloctext"
+        android:layout_width="262dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="385dp"
+        android:layout_marginBottom="50dp"
+        android:text="123 Maplewood Lane, Apt 4B Springfield, IL 62704 USA"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/ticketnote"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="430dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="50dp"
+        app:srcCompat="@drawable/baseline_note_alt_24" />
+
+    <TextView
+        android:id="@+id/ticketnotetext"
+        android:layout_width="262dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="430dp"
+        android:layout_marginBottom="50dp"
+        android:text="Show this QR code to the ticket counter to receive your ticket"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/ticketcode"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="510dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginBottom="50dp" />
+
+
+    <TextView
+        android:id="@+id/ticketcodenum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="590dp"
+        android:layout_marginBottom="50dp"
+        android:text="Random Number"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/confirmCreditCardButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="10dp"
+        android:text="Back to Home"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/white" />
+
+
+</FrameLayout>

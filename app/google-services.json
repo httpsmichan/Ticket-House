@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "97805492770",
+    "project_id": "tickethouse-a0dfe",
+    "storage_bucket": "tickethouse-a0dfe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97805492770:android:725f3f866dd46f823ce07b",
+        "android_client_info": {
+          "package_name": "com.example.tickethouse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6utAmjzMGQF9hwR88NAQZPpkWFe1Yi34"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

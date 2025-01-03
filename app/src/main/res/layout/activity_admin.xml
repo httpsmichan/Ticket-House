@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:ignore="TouchTargetSize"
+    tools:context=".admin">
+
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/homebackground"
+        android:orientation="vertical"
+        tools:ignore="TouchTargetSize"
+        android:padding="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Movie"
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/genreGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <EditText
+                android:id="@+id/moviePhotolink"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/searchfield"
+                android:hint="Movie Poster Link"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                android:textSize="12sp" />
+
+
+            <EditText
+                android:id="@+id/movieTitle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/searchfield"
+                android:hint="Movie Title"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/moviePrice"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/searchfield"
+                android:hint="Movie Price"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/movieDirector"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/searchfield"
+                android:hint="Movie Director/s"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/movieDescription"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/searchfield"
+                android:gravity="top|start"
+                android:hint="Movie Description"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/addgenre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Movie Genre"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:id="@+id/movieGenres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/movieGenre1"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/searchfield"
+                    android:text="Action"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+                <CheckBox
+                    android:id="@+id/movieGenre2"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/searchfield"
+                    android:text="Comedy"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"/>
+
+                <CheckBox
+                    android:id="@+id/movieGenre3"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/searchfield"
+                    android:text="Adventure"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/movieGenre4"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/searchfield"
+                    android:text="Horror"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/movieGenre5"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/searchfield"
+                    android:text="Romance"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <CheckBox
+                    android:id="@+id/movieGenre6"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/searchfield"
+                    android:text="Sci-Fi"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/movieCast"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/searchfield"
+                android:gravity="top|start"
+                android:hint="Movie Casts"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+            <TextView
+                android:id="@+id/addshow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Showing Date"
+                android:textColor="@color/white"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/datestart"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:padding="10dp"
+                android:hint="Start Date (yyyy/mm/dd)"
+                android:inputType="date"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/searchfield"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/dateend"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                android:hint="End Date (yyyy/mm/dd)"
+                android:inputType="date"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textSize="12sp"
+                android:background="@drawable/searchfield"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/timeadd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Showing Time"
+                android:textColor="@color/white"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/startTime"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:padding="10dp"
+                android:hint="Start Time (HH:mm)"
+                android:inputType="time"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/searchfield"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TouchTargetSize"/>
+
+            <EditText
+                android:id="@+id/endTime"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:hint="End Time (HH:mm)"
+                android:inputType="time"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/searchfield"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/theatreGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/addtheatre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Select Theatre"
+                android:textColor="@color/white"
+                android:textSize="15sp"/>
+
+            <CheckBox
+                android:id="@+id/selectTheatre1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/searchfield"
+                android:text="Theatre 1"
+                android:layout_marginBottom="3dp"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/selectTheatre2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/searchfield"
+                android:text="Theatre 2"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/selectTheatre3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/searchfield"
+                android:text="Theatre 3"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/selectTheatre4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/searchfield"
+                android:text="VIP Room 1"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <CheckBox
+                android:id="@+id/selectTheatre5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/searchfield"
+                android:text="VIP Room 2"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/languageGroup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/addlanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Select Language"
+                android:textColor="@color/white"
+                android:textSize="15sp"/>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:stretchColumns="1"
+                android:padding="5dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp">
+
+                    <CheckBox
+                        android:id="@+id/movieLanguage1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/searchfield"
+                        android:padding="10dp"
+                        android:text="English"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/movieLanguage2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/searchfield"
+                        android:padding="10dp"
+                        android:text="German"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp">
+
+                    <CheckBox
+                        android:id="@+id/movieLanguage3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/searchfield"
+                        android:padding="10dp"
+                        android:text="Spanish"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/movieLanguage4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/searchfield"
+                        android:padding="10dp"
+                        android:text="Japanese"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp">
+
+                    <CheckBox
+                        android:id="@+id/movieLanguage5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/searchfield"
+                        android:padding="10dp"
+                        android:text="Korean"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/movieLanguage6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/searchfield"
+                        android:padding="10dp"
+                        android:text="French"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp">
+
+                    <CheckBox
+                        android:id="@+id/movieLanguage7"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/searchfield"
+                        android:padding="10dp"
+                        android:text="Mandarin Chinese"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/movieLanguage8"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/searchfield"
+                        android:padding="10dp"
+                        android:text="Hindi"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:layout_gravity="center"
+            android:layout_margin="30dp"
+            android:text="Save Changes" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/homebackground"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Header Text for Reservation Details -->
+    <TextView
+        android:id="@+id/reserveTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Title"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/showingTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Time"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <!-- Spinner for Selecting Theatre/VIP Room -->
+    <Spinner
+        android:id="@+id/theatreSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="8dp"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/searchfield"/>
+
+    <!-- ScrollView for the Date and Seat Selection Section -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- GridLayout for Date Buttons -->
+            <TextView
+                android:id="@+id/dateHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Select a Date"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dateMonth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Month"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <GridLayout
+                android:id="@+id/datesGridLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp" />
+
+            <!-- GridLayout for Seating Layout -->
+            <TextView
+                android:id="@+id/seatHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Select a Seat"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <GridLayout
+                android:id="@+id/seatsGridLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="2dp" />
+
+            <TextView
+                android:id="@+id/details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Input Personal Details"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/Name"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/searchfield"
+                android:hint="Enter Name"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/EName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/searchfield"
+                android:hint="Enter Email"
+                android:padding="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                android:textSize="12sp" />
+
+            <EditText
+                    android:id="@+id/number"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/searchfield"
+                android:hint="Contact Number"
+                android:inputType="phone"
+                android:padding="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D8E1E8"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Select Payment Method"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                    android:id="@+id/paymentSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="8dp"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/searchfield"/>
+
+            <RadioGroup
+                android:id="@+id/EpaymentOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="visible"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Footer Button for Confirming Reservation -->
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Confirm Reservation"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/white"
+        android:elevation="4dp" />
+</LinearLayout>
