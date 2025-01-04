@@ -23,12 +23,13 @@ import java.util.HashMap;
 
 public class signup extends AppCompatActivity {
 
+    private boolean shouldAllowBackPress = false;
     private static final String TAG = "register";
-    private FirebaseAuth auth;  // Firebase Auth instance
-    private FirebaseFirestore db;  // Firebase Firestore instance
-    private EditText usernameEditText, emailEditText, passwordEditText, confirmPasswordEditText;  // EditTexts for user inputs
-    private Button registerButton;  // Register button
-    private TextView loginRedirectTextView;  // Redirect to login text view
+    private FirebaseAuth auth;
+    private FirebaseFirestore db;
+    private EditText usernameEditText, emailEditText, passwordEditText, confirmPasswordEditText;
+    private Button registerButton;
+    private TextView loginRedirectTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class signup extends AppCompatActivity {
         initializeFirebase();
         initializeUIComponents();
 
-        // Handle uncaught exceptions
+
         Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
             Log.e(TAG, "Uncaught exception: ", throwable);
         });
@@ -48,11 +49,12 @@ public class signup extends AppCompatActivity {
         loginRedirectTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(signup.this, login.class));
+                Intent intent = new Intent(signup.this, login.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
     }
-
     private void initializeFirebase() {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -67,7 +69,7 @@ public class signup extends AppCompatActivity {
         loginRedirectTextView = findViewById(R.id.redirectlogin);
 
         registerButton.setOnClickListener(v -> validateAndRegisterUser());
-        loginRedirectTextView.setOnClickListener(v -> finish());  // Go back to LoginActivity
+        loginRedirectTextView.setOnClickListener(v -> finish());
     }
 
     private void validateAndRegisterUser() {
@@ -116,5 +118,13 @@ public class signup extends AppCompatActivity {
                 });
     }
 
+    @Override
+    public void onBackPressed() {
+        if (shouldAllowBackPress) {
 
+            super.onBackPressed();
+        } else {
+
+        }
+    }
 }

@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/tickettext"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginTop="15dp"
             android:text="My Ticket"
             android:textColor="@color/white"
@@ -41,8 +41,8 @@
         android:id="@+id/tickettitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="150dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="130dp"
         android:layout_marginBottom="50dp"
         android:text="Movie Title"
         android:textColor="@color/black"
@@ -53,8 +53,8 @@
         android:id="@+id/ticketgenre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
-        android:layout_marginLeft="150dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="130dp"
         android:layout_marginBottom="50dp"
         android:text="Genre"
         android:textColor="@color/black"
@@ -64,7 +64,7 @@
         android:id="@+id/posterViewTop"
         android:layout_width="90dp"
         android:layout_height="125dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="110dp"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="50dp" />
 
@@ -192,7 +192,7 @@
         android:id="@+id/ticketcodenum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="150dp"
+        android:layout_marginLeft="165dp"
         android:layout_marginTop="590dp"
         android:layout_marginBottom="50dp"
         android:text="Random Number"
@@ -200,9 +200,9 @@
         android:textSize="15sp" />
 
     <Button
-        android:id="@+id/confirmCreditCardButton"
+        android:id="@+id/homeButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_gravity="bottom"
         android:layout_margin="10dp"
         android:text="Back to Home"

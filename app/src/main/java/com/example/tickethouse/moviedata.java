@@ -17,6 +17,7 @@ public class moviedata {
     private String genre;
     private String theaters;
     private String languages;
+    private String movieCode;
 
     // Default constructor required for Firebase
     public moviedata() {
@@ -25,7 +26,7 @@ public class moviedata {
     // Parameterized constructor
     public moviedata(String photoLink, String title, String price, String director, String description,
                      String cast, String startDate, String endDate, String startTime, String endTime,
-                     String genre, String theaters, String languages) {
+                     String genre, String theaters, String languages, String movieCode) {
         this.photoLink = photoLink;
         this.title = title;
         this.price = price;
@@ -39,6 +40,7 @@ public class moviedata {
         this.genre = genre;
         this.theaters = theaters;
         this.languages = languages;
+        this.movieCode = movieCode;
     }
 
     // Getters and Setters
@@ -146,6 +148,14 @@ public class moviedata {
         this.languages = languages;
     }
 
+    public String getMovieCode() {
+        return movieCode;
+    }
+
+    public void setMovieCode(String movieCode) {
+        this.movieCode = movieCode;
+    }
+
     @Override
     public String toString() {
         return "MovieData{" +
@@ -162,6 +172,7 @@ public class moviedata {
                 ", genre='" + genre + '\'' +
                 ", theaters='" + theaters + '\'' +
                 ", languages='" + languages + '\'' +
+                ", movieCode='" + movieCode + '\'' +
                 '}';
     }
 }

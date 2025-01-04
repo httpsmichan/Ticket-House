@@ -9,4 +9,18 @@
         <item>VIP Room 2</item>
     </string-array>
 
+    <string-array name="update_options">
+        <item> </item>
+        <item>Movie Poster Link</item>
+        <item>Movie Title</item>
+        <item>Movie Price</item>
+        <item>Movie Director/s</item>
+        <item>Movie Description</item>
+        <item>Movie Genre</item>
+        <item>Movie Casts</item>
+        <item>Movie Showing Date</item>
+        <item>Movie Showing Time</item>
+        <item>Movie Theatre</item>
+        <item>Movie Language</item>
+    </string-array>
 </resources>

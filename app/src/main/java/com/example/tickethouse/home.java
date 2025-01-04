@@ -1,6 +1,7 @@
 package com.example.tickethouse;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,9 +10,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,30 +28,57 @@ import java.util.concurrent.TimeUnit;
 
 public class home extends AppCompatActivity {
 
+    private boolean shouldAllowBackPress = false;
     private LinearLayout movieListLayout;
     private LinearLayout comingSoonLayout;
     private DatabaseReference databaseReference;
+    private ImageView logOutbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        movieListLayout = findViewById(R.id.movieListLayout); // LinearLayout to display movies
+        logOutbtn = findViewById(R.id.logOutbtn);
+        movieListLayout = findViewById(R.id.movieListLayout);
         comingSoonLayout = findViewById(R.id.comingSoonLayout);
 
-        // Initialize Firebase Database reference
+
         databaseReference = FirebaseDatabase.getInstance().getReference("movies");
 
-        // Load movies from the database
+
         loadMoviesFromDatabase();
+
+        logOutbtn.setOnClickListener(v -> {
+
+            new AlertDialog.Builder(home.this)
+                    .setTitle("Logout")
+                    .setMessage("Are you sure you want to log out?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+
+                        FirebaseAuth.getInstance().signOut();
+
+
+                        SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.clear();
+                        editor.apply();
+
+
+                        Intent intent = new Intent(home.this, login.class);
+                        startActivity(intent);
+                        finish();
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        });
     }
 
     private void loadMoviesFromDatabase() {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                movieListLayout.removeAllViews(); // Clear previous views
+                movieListLayout.removeAllViews();
 
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot movieSnapshot : dataSnapshot.getChildren()) {
@@ -94,11 +124,11 @@ public class home extends AppCompatActivity {
 
                 movieTitleView.setText(movie.getTitle());
 
-                // Set an OnClickListener to navigate to the details page
+
                 movieImageView.setOnClickListener(v -> {
                     Intent intent = new Intent(home.this, details.class);
-                    intent.putExtra("movieTitle", movie.getTitle()); // Passing movie data (e.g. title)
-                    intent.putExtra("movieImage", movie.getPhotoLink()); // Passing movie image URL
+                    intent.putExtra("movieTitle", movie.getTitle());
+                    intent.putExtra("movieImage", movie.getPhotoLink());
                     intent.putExtra("moviePrice", movie.getPrice());
                     intent.putExtra("movieCasts", movie.getCast());
                     intent.putExtra("movieDescription", movie.getDescription());
@@ -117,7 +147,7 @@ public class home extends AppCompatActivity {
                 });
 
                 movieTitleView.setOnClickListener(v -> {
-                    Intent intent = new Intent(home.this, ticket.class); // Navigate to ticket activity
+                    Intent intent = new Intent(home.this, ticket.class);
                     intent.putExtra("movieTitle", movie.getTitle());
                     intent.putExtra("movieImage", movie.getPhotoLink());
                     intent.putExtra("moviePrice", movie.getPrice());
@@ -132,7 +162,7 @@ public class home extends AppCompatActivity {
                     intent.putExtra("movieEndDate", movie.getEndDate());
                     intent.putExtra("movieTheatres", movie.getTheaters());
 
-                    startActivity(intent); // Navigate to the ticket page
+                    startActivity(intent);
                 });
 
                 movieListLayout.addView(movieItemView);
@@ -150,10 +180,10 @@ public class home extends AppCompatActivity {
 
                 comingSoonTitleView.setText(movie.getTitle());
 
-                // Set an OnClickListener for the coming soon movies as well
+
                 comingSoonImageView.setOnClickListener(v -> {
                     Intent intent = new Intent(home.this, details.class);
-                    intent.putExtra("movieTitle", movie.getTitle()); // Passing movie data
+                    intent.putExtra("movieTitle", movie.getTitle());
                     intent.putExtra("movieImage", movie.getPhotoLink());
                     intent.putExtra("moviePrice", movie.getPrice());
                     intent.putExtra("movieCasts", movie.getCast());
@@ -175,6 +205,16 @@ public class home extends AppCompatActivity {
             }
         } catch (Exception e) {
             Log.e("AddMovieError", "Error adding movie: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (shouldAllowBackPress) {
+
+            super.onBackPressed();
+        } else {
+
         }
     }
 }

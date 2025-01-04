@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class login extends AppCompatActivity {
 
+    private boolean shouldAllowBackPress = false;
     private FirebaseAuth auth;
     private EditText emailEditText, passwordEditText;
 
@@ -31,7 +32,11 @@ public class login extends AppCompatActivity {
 
         loginButton.setOnClickListener(v -> loginUser());
 
-        registerRedirect.setOnClickListener(v -> startActivity(new Intent(login.this, signup.class)));
+        registerRedirect.setOnClickListener(v -> {
+            Intent intent = new Intent(login.this, signup.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        });
     }
 
     private void loginUser() {
@@ -48,13 +53,18 @@ public class login extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(login.this, "Login successful", Toast.LENGTH_SHORT).show();
 
+                        Intent intent;
                         if (email.equals("ticketshouseadmin10@gmail.com") && password.equals("ticketshouse590")) {
-                            Intent intent = new Intent(login.this, admin.class); // Navigate to FirstPage for admin
-                            startActivity(intent);
+                            intent = new Intent(login.this, adminhome.class);
+                            overridePendingTransition(0, 0);
                         } else {
-                            Intent intent = new Intent(login.this, home.class); // Navigate to home for regular users
-                            startActivity(intent);
+                            intent = new Intent(login.this, home.class);
+                            overridePendingTransition(0, 0);
                         }
+
+                        startActivity(intent);
+
+                        overridePendingTransition(0, 0);
 
                         finish();
                     } else {
@@ -62,5 +72,15 @@ public class login extends AppCompatActivity {
                         Toast.makeText(login.this, "Login failed: " + errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (shouldAllowBackPress) {
+
+            super.onBackPressed();
+        } else {
+
+        }
     }
 }

@@ -17,24 +17,23 @@
         tools:ignore="TouchTargetSize"
         android:padding="15dp">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/Backbtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:layout_gravity="left"
+            app:srcCompat="@drawable/baseline_keyboard_backspace_24" />
+
+        <TextView
+            android:id="@+id/add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
-            android:padding="15dp">
-
-            <TextView
-                android:id="@+id/add"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add Movie"
-                android:padding="10dp"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+            android:text="Add Movie"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:id="@+id/genreGroup"
@@ -500,9 +499,9 @@
 
         <Button
             android:id="@+id/saveButton"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:backgroundTint="@color/red"
             android:layout_gravity="center"
             android:layout_margin="30dp"
             android:text="Save Changes" />

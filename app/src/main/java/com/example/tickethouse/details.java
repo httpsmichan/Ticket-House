@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class details extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +46,7 @@ public class details extends AppCompatActivity {
         String movieEndDate = getIntent().getStringExtra("movieEndDate");
         String movieTheatres = getIntent().getStringExtra("movieTheatres");
 
-        // Set the data to the views
+
         if (movieTitle != null) {
             movieTitleView.setText(movieTitle);
         }
@@ -68,9 +69,9 @@ public class details extends AppCompatActivity {
             movieTimeView.setText(movieStartTime + " - " + movieEndTime);
         }
 
-        // Set up the button click listener for setup
+
         setupMovieButton.setOnClickListener(v -> {
-            // Create Intent for Reservation Activity
+
             Intent reservationIntent = new Intent(details.this, reservation.class);
 
             // Pass the movie details to the Reservation Activity
@@ -83,8 +84,9 @@ public class details extends AppCompatActivity {
             reservationIntent.putExtra("movieStartTime", movieStartTime);
             reservationIntent.putExtra("movieEndTime", movieEndTime);
 
-            // Start the Reservation Activity
+
             startActivity(reservationIntent);
         });
     }
+
 }

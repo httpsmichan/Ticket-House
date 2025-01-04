@@ -2,9 +2,11 @@ package com.example.tickethouse;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,77 +22,88 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class ticket extends AppCompatActivity {
 
+    private boolean shouldAllowBackPress = false;
     private TextView movieTitleTextView;
     private TextView movieGenreTextView;
-    private TextView moviePriceTextView;  // TextView for movie price
-    private TextView ticketDateTextView;  // TextView for reservation date
-    private TextView ticketSeatTextView;  // TextView for reserved seats
-    private TextView ticketCodeTextView;  // TextView for ticket code (5-digit code)
+    private TextView moviePriceTextView;
+    private TextView ticketDateTextView;
+    private TextView ticketSeatTextView;
+    private TextView ticketCodeTextView;
     private ImageView posterImageView;
-    private ImageView barcodeImageView; // ImageView for barcode
+    private ImageView barcodeImageView;
     private DatabaseReference moviesRef;
+
+    private Button homeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ticket);  // Set the layout for ticket activity
+        setContentView(R.layout.activity_ticket);
 
-        // Initialize views
-        movieTitleTextView = findViewById(R.id.tickettitle);  // TextView for movie title
-        movieGenreTextView = findViewById(R.id.ticketgenre);  // TextView for movie genre
-        moviePriceTextView = findViewById(R.id.ticketpricetext);  // TextView for movie price
-        ticketDateTextView = findViewById(R.id.ticketdatetext);  // TextView for reservation date
-        ticketSeatTextView = findViewById(R.id.ticketseattext);  // TextView for reserved seats
-        ticketCodeTextView = findViewById(R.id.ticketcodenum);  // TextView for displaying the ticket code
-        posterImageView = findViewById(R.id.posterViewTop);  // ImageView for movie poster
-        barcodeImageView = findViewById(R.id.ticketcode); // ImageView for barcode
 
-        // Initialize Firebase reference to movies collection
+        movieTitleTextView = findViewById(R.id.tickettitle);
+        movieGenreTextView = findViewById(R.id.ticketgenre);
+        moviePriceTextView = findViewById(R.id.ticketpricetext);
+        ticketDateTextView = findViewById(R.id.ticketdatetext);
+        ticketSeatTextView = findViewById(R.id.ticketseattext);
+        ticketCodeTextView = findViewById(R.id.ticketcodenum);
+        posterImageView = findViewById(R.id.posterViewTop);
+        barcodeImageView = findViewById(R.id.ticketcode);
+
+
         moviesRef = FirebaseDatabase.getInstance().getReference("movies");
 
-        // Get the movie title and reservation details passed through the intent
+
+        homeButton = findViewById(R.id.homeButton);
+
+
+        homeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ticket.this, home.class);
+            startActivity(intent);
+            finish();
+        });
+
         String movieTitle = getIntent().getStringExtra("movieTitle");
         String reservationDate = getIntent().getStringExtra("reservationDate");
         String seats = getIntent().getStringExtra("seats");
 
-        // Set the movie title and reservation details in the TextViews
+
         movieTitleTextView.setText(movieTitle);
         ticketDateTextView.setText(reservationDate);
 
-        // Format the seats (if multiple, separate by commas)
+
         if (seats != null && !seats.isEmpty()) {
-            ticketSeatTextView.setText(seats);  // Directly show seats if available
+            ticketSeatTextView.setText(seats);
         } else {
             ticketSeatTextView.setText("Seats: None selected");
         }
 
-        // Fetch the movie details from the Firebase database based on the title
+
         fetchMovieDetails(movieTitle);
 
-        // Generate a random 5-digit code for the ticket
+
         String randomCode = generateRandomCode();
 
-        // Display the generated ticket code on the TextView
+
         ticketCodeTextView.setText(randomCode);
 
-        // Generate the barcode for the 5-digit code
+
         generateBarcode(randomCode);
 
-        // Optionally, you can display the code on the screen for clarity
+
         Toast.makeText(this, "Generated Code: " + randomCode, Toast.LENGTH_LONG).show();
     }
 
-    // Method to generate a random 5-digit code
     private String generateRandomCode() {
-        int code = (int) (Math.random() * 90000) + 10000;  // Generate a 5-digit number (10000 to 99999)
+        int code = (int) (Math.random() * 90000) + 10000;
         return String.valueOf(code);
     }
 
-    // Method to generate and display barcode from the 5-digit code
+
     private void generateBarcode(String data) {
         BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
         try {
-            // Generate barcode using the 5-digit code
+
             Bitmap bitmap = barcodeEncoder.encodeBitmap(data, BarcodeFormat.CODE_128, 600, 300);
             barcodeImageView.setImageBitmap(bitmap);
         } catch (WriterException e) {
@@ -100,7 +113,6 @@ public class ticket extends AppCompatActivity {
     }
 
     private void fetchMovieDetails(String movieTitle) {
-        // Query the database for the movie based on the title
         moviesRef.orderByChild("title").equalTo(movieTitle).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -109,10 +121,10 @@ public class ticket extends AppCompatActivity {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         // Get the movie data
                         String movieImage = snapshot.child("photoLink").getValue(String.class);
-                        String movieGenre = snapshot.child("genre").getValue(String.class);  // Get genre
-                        String moviePrice = snapshot.child("price").getValue(String.class);  // Get price
+                        String movieGenre = snapshot.child("genre").getValue(String.class);
+                        String moviePrice = snapshot.child("price").getValue(String.class);
 
-                        // Set the genre and price to the corresponding TextViews
+
                         if (movieGenre != null) {
                             movieGenreTextView.setText("Genre: " + movieGenre);
                         }
@@ -120,19 +132,19 @@ public class ticket extends AppCompatActivity {
                             moviePriceTextView.setText("Price: " + moviePrice);
                         }
 
-                        // Check if movieImage is not null or empty
+
                         if (movieImage != null && !movieImage.isEmpty()) {
-                            // Load the poster image using Glide
+
                             Glide.with(ticket.this)
-                                    .load(movieImage)  // Load the image from the URL
-                                    .into(posterImageView);  // Set the loaded image into the ImageView
+                                    .load(movieImage)
+                                    .into(posterImageView);
                         } else {
-                            // Handle case where the image URL is not available
+
                             Toast.makeText(ticket.this, "Image not available for this movie.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } else {
-                    // If movie not found, show a toast
+
                     Toast.makeText(ticket.this, "Movie not found in the database.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -142,5 +154,15 @@ public class ticket extends AppCompatActivity {
                 Toast.makeText(ticket.this, "Error retrieving movie details.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (shouldAllowBackPress) {
+
+            super.onBackPressed();
+        } else {
+
+        }
     }
 }

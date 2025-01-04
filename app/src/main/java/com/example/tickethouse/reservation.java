@@ -37,12 +37,12 @@ import java.util.Map;
 
 public class reservation extends AppCompatActivity {
 
-    private GridLayout datesGridLayout;  // GridLayout for date buttons
-    private GridLayout seatsGridLayout;  // GridLayout for seat buttons
-    private Spinner theatreSpinner;     // Spinner for theater selection
-    private Spinner paymentSpinner;     // Spinner for payment method selection
-    private TextView dateMonth;         // TextView for displaying the month(s)
-    private RadioGroup paymentOptions;  // RadioGroup for payment options
+    private GridLayout datesGridLayout;
+    private GridLayout seatsGridLayout;
+    private Spinner theatreSpinner;
+    private Spinner paymentSpinner;
+    private TextView dateMonth;
+    private RadioGroup paymentOptions;
     private Button selectedDateButton;
     private final List<String> selectedSeats = new ArrayList<>();
 
@@ -57,7 +57,7 @@ public class reservation extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         reservationsRef = database.getReference("reservations");
 
-        // Initialize components
+
         datesGridLayout = findViewById(R.id.datesGridLayout);
         seatsGridLayout = findViewById(R.id.seatsGridLayout);
         theatreSpinner = findViewById(R.id.theatreSpinner);
@@ -65,7 +65,7 @@ public class reservation extends AppCompatActivity {
         dateMonth = findViewById(R.id.dateMonth);
         paymentOptions = findViewById(R.id.EpaymentOptions);
 
-        // Retrieve intent data
+
         String movieStartDate = getIntent().getStringExtra("movieStartDate");
         String movieEndDate = getIntent().getStringExtra("movieEndDate");
         String movieTheatres = getIntent().getStringExtra("movieTheatres");
@@ -114,19 +114,19 @@ public class reservation extends AppCompatActivity {
 
     private String getSelectedDate() {
         if (selectedDateButton != null) {
-            return selectedDateButton.getTag().toString(); // Return the full date stored in the tag
+            return selectedDateButton.getTag().toString();
         }
         return null; // No date selected
     }
 
     private String getSelectedSeats() {
-        return String.join(", ", selectedSeats); // Return seats as a comma-separated string
+        return String.join(", ", selectedSeats);
     }
 
     private void saveReservation() {
         String theatre = theatreSpinner.getSelectedItem().toString();
-        String reservationDate = getSelectedDate(); // Method to get selected date
-        String seats = getSelectedSeats(); // Method to get selected seats
+        String reservationDate = getSelectedDate();
+        String seats = getSelectedSeats();
         String name = ((TextView) findViewById(R.id.Name)).getText().toString();
         String email = ((TextView) findViewById(R.id.EName)).getText().toString();
         String contactNo = ((TextView) findViewById(R.id.number)).getText().toString();
@@ -143,7 +143,7 @@ public class reservation extends AppCompatActivity {
             return;
         }
 
-        // First, check if any individual seat in the selected reservation already exists for the same movie title and date
+
         reservationsRef.orderByChild("reservation_date").equalTo(reservationDate)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -167,13 +167,13 @@ public class reservation extends AppCompatActivity {
                             }
                         }
 
-                        // Generate a unique reservation ID
+
                         String reservationId = "reservation" + System.currentTimeMillis();
 
-                        // Generate a random 5-digit code
+
                         int randomCode = (int) (Math.random() * 90000) + 10000;
 
-                        // Create reservation object
+
                         Map<String, String> reservation = new HashMap<>();
                         reservation.put("theatre", theatre);
                         reservation.put("name", name);
@@ -185,14 +185,14 @@ public class reservation extends AppCompatActivity {
                         reservation.put("payment_method", paymentMethod);
                         reservation.put("movie_title", movieTitle);
                         reservation.put("movie_time", movieTime);
-                        reservation.put("code", String.valueOf(randomCode)); // Add the generated code
+                        reservation.put("code", String.valueOf(randomCode));
 
-                        // Save to Firebase
+
                         reservationsRef.child(reservationId).setValue(reservation).addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
                                 Toast.makeText(reservation.this, "Reservation saved successfully!", Toast.LENGTH_SHORT).show();
 
-                                // Pass relevant data to ticket activity
+
                                 Intent intent = new Intent(reservation.this, ticket.class);
                                 intent.putExtra("movieTitle", movieTitle);
                                 intent.putExtra("movieTime", movieTime);
@@ -204,12 +204,12 @@ public class reservation extends AppCompatActivity {
                                 intent.putExtra("contactNo", contactNo);
                                 intent.putExtra("paymentMethod", paymentMethod);
                                 intent.putExtra("bookingDate", bookingDate);
-                                intent.putExtra("code", randomCode); // Pass the code to the next activity
+                                intent.putExtra("code", randomCode);
 
-                                // Start ticket activity
+
                                 startActivity(intent);
 
-                                // Close current activity
+
                                 finish();
                             } else {
                                 Toast.makeText(reservation.this, "Failed to save reservation.", Toast.LENGTH_SHORT).show();
@@ -226,13 +226,13 @@ public class reservation extends AppCompatActivity {
 
 
     private void checkReservedSeats(String theatre, String reservationDate) {
-        String movieTitle = ((TextView) findViewById(R.id.reserveTitle)).getText().toString(); // Get the current movie title
+        String movieTitle = ((TextView) findViewById(R.id.reserveTitle)).getText().toString();
 
         reservationsRef.orderByChild("reservation_date").equalTo(reservationDate)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        // List to store all reserved seats for the selected date, theater, and movie
+
                         List<String> reservedSeats = new ArrayList<>();
 
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -240,14 +240,14 @@ public class reservation extends AppCompatActivity {
                             String reservedTheatre = snapshot.child("theatre").getValue(String.class);
                             String seats = snapshot.child("seat").getValue(String.class);
 
-                            // Match by movie title, theater, and ensure seats are not null
+
                             if (movieTitle.equals(reservedMovieTitle) && theatre.equals(reservedTheatre) && seats != null) {
                                 String[] seatsArray = seats.split(", ");
                                 reservedSeats.addAll(Arrays.asList(seatsArray));
                             }
                         }
 
-                        // Populate seats and mark the reserved ones
+
                         populateSeats(theatre, reservedSeats);
                     }
 
@@ -269,17 +269,17 @@ public class reservation extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedOption = paymentOptionsArray[position];
                 if (selectedOption.equals("Payment Center / E-Wallet")) {
-                    paymentOptions.setVisibility(View.VISIBLE); // Show RadioGroup
+                    paymentOptions.setVisibility(View.VISIBLE);
                     showPaymentOptions();
                 } else if (selectedOption.equals("Credit / Debit Card")) {
-                    paymentOptions.setVisibility(View.GONE); // Hide RadioGroup
+                    paymentOptions.setVisibility(View.GONE);
                     showCreditCardModal();
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // No action required
+
             }
         });
     }
@@ -288,7 +288,7 @@ public class reservation extends AppCompatActivity {
     private void showPaymentOptions() {
         paymentOptions.removeAllViews();
 
-        // Add radio buttons dynamically
+
         String[] options = {"GCash", "Maya", "PayPal"};
         for (String option : options) {
             RadioButton radioButton = new RadioButton(this);
@@ -318,7 +318,7 @@ public class reservation extends AppCompatActivity {
     private void populateDateButtons(Date startDate, Date endDate) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
-        datesGridLayout.setColumnCount(5); // 5 columns as required
+        datesGridLayout.setColumnCount(5);
         datesGridLayout.removeAllViews();
 
         SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM");
@@ -329,8 +329,8 @@ public class reservation extends AppCompatActivity {
         for (int i = 0; i < 15; i++) {
             Button button = new Button(this);
             String fullDate = dateFormat.format(calendar.getTime());
-            button.setTag(fullDate); // Store the full date in the tag
-            button.setText(new SimpleDateFormat("d").format(calendar.getTime())); // Display day only
+            button.setTag(fullDate);
+            button.setText(new SimpleDateFormat("d").format(calendar.getTime()));
             button.setBackground(getDrawable(R.drawable.datesbtn));
             button.setGravity(Gravity.CENTER);
             button.setTextSize(10);
@@ -346,15 +346,14 @@ public class reservation extends AppCompatActivity {
             params.columnSpec = GridLayout.spec(column);
             button.setLayoutParams(params);
 
-            // OnClickListener to handle date selection
+
             button.setOnClickListener(v -> {
                 if (selectedDateButton != null) {
-                    selectedDateButton.setBackground(getDrawable(R.drawable.datesbtn)); // Reset previous button
+                    selectedDateButton.setBackground(getDrawable(R.drawable.datesbtn));
                 }
-                button.setBackgroundColor(Color.parseColor("#f7b7b5")); // Highlight selected
-                selectedDateButton = button; // Track the selected button
+                button.setBackgroundColor(Color.parseColor("#f7b7b5"));
+                selectedDateButton = button;
 
-                // Call checkReservedSeats to fetch reserved seats for the selected date
                 String selectedTheater = theatreSpinner.getSelectedItem().toString();
                 checkReservedSeats(selectedTheater, button.getTag().toString());
             });
@@ -378,25 +377,25 @@ public class reservation extends AppCompatActivity {
 
     private void populateSeats(String theater, List<String> reservedSeats) {
         seatsGridLayout.removeAllViews();
-        int seatCount = theater.contains("VIP") ? 20 : 30; // Example logic for seat count
+        int seatCount = theater.contains("VIP") ? 20 : 30;
         int rows = seatCount / 5;
         char rowLetter = 'A';
 
         for (int i = 0; i < seatCount; i++) {
             Button seatButton = new Button(this);
             String seatLabel = rowLetter + String.valueOf((i % 5) + 1);
-            seatButton.setTag(seatLabel); // Store seat label in the tag
+            seatButton.setTag(seatLabel);
             seatButton.setText(seatLabel);
             seatButton.setBackground(getDrawable(R.drawable.datesbtn));
             seatButton.setGravity(Gravity.CENTER);
             seatButton.setTextSize(8);
 
-            // Set background color based on whether the seat is reserved or selected
+
             if (reservedSeats.contains(seatLabel)) {
-                seatButton.setBackgroundColor(Color.parseColor("#ab9899")); // Highlight reserved seats
-                seatButton.setEnabled(false);  // Disable the button to prevent further selection
+                seatButton.setBackgroundColor(Color.parseColor("#ab9899"));
+                seatButton.setEnabled(false);
             } else {
-                seatButton.setBackground(getDrawable(R.drawable.datesbtn)); // Regular background for available seats
+                seatButton.setBackground(getDrawable(R.drawable.datesbtn));
             }
 
             GridLayout.LayoutParams params = new GridLayout.LayoutParams();
@@ -410,24 +409,24 @@ public class reservation extends AppCompatActivity {
             params.columnSpec = GridLayout.spec(column);
             seatButton.setLayoutParams(params);
 
-            // OnClickListener to handle seat selection (only for available seats)
+
             seatButton.setOnClickListener(v -> {
                 if (seatButton.isEnabled()) {
                     if (selectedSeats.contains(seatLabel)) {
-                        // Deselect seat
+
                         selectedSeats.remove(seatLabel);
-                        seatButton.setBackground(getDrawable(R.drawable.datesbtn)); // Reset background
+                        seatButton.setBackground(getDrawable(R.drawable.datesbtn));
                     } else {
-                        // Select seat
+
                         selectedSeats.add(seatLabel);
-                        seatButton.setBackgroundColor(Color.parseColor("#f7b7b5")); // Highlight selected seat
+                        seatButton.setBackgroundColor(Color.parseColor("#f7b7b5"));
                     }
                 }
             });
 
             seatsGridLayout.addView(seatButton);
 
-            // Update row letter after every 5 seats
+
             if ((i % 5) == 4) {
                 rowLetter++;
             }
@@ -437,24 +436,24 @@ public class reservation extends AppCompatActivity {
 
 
     private void populateTheatreSpinner(String[] theatersArray) {
-        // Set up the ArrayAdapter for the Spinner
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, theatersArray);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         theatreSpinner.setAdapter(adapter);
 
-        // Set a listener to handle theater selection
+
         theatreSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, android.view.View view, int position, long id) {
                 String selectedTheater = theatersArray[position].trim();
 
-                // Fetch reserved seats for the selected theater
+
                 checkReservedSeats(selectedTheater, getSelectedDate());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Handle case where nothing is selected (optional)
+
             }
         });
     }

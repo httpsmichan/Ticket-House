@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class firstpage extends AppCompatActivity {
 
+    private boolean shouldAllowBackPress = false;
     private Button mainLgnButton, mainSgnButton;
 
     @Override
@@ -31,6 +32,8 @@ public class firstpage extends AppCompatActivity {
 
                 Intent intent = new Intent(firstpage.this, login.class);
                 startActivity(intent);
+
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -40,7 +43,19 @@ public class firstpage extends AppCompatActivity {
 
                 Intent intent = new Intent(firstpage.this, signup.class);
                 startActivity(intent);
+
+                overridePendingTransition(0, 0);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (shouldAllowBackPress) {
+
+            super.onBackPressed();
+        } else {
+
+        }
     }
 }
